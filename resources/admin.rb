@@ -1,10 +1,11 @@
 resource_name :admin
 property :username, String, required: true
-property :public_keys, String, required: true
+property :public_keys, Array, required: true
+property :home_dir, String, required: true
+property :ssh_dir, String, required: true
+property :auth_keys, String, required: true
 
 action :create do
-  home_dir = ::File.join("/home", username);
-  ssh_dir = ::File.join(home_dir, ".ssh");
   user username do
     comment 'Administrator Account'
     shell '/bin/bash'
@@ -14,6 +15,7 @@ action :create do
 
   template '/etc/sudoers' do
      source 'sudoers.erb'
+     cookbook 'ru_baseline'
      user 'root'
      group 'root'
      mode '0440'
@@ -26,7 +28,7 @@ action :create do
    	 group username
   end
 
-  file ::File.join(ssh_dir, 'authorized_keys') do
+  file auth_keys do
   	content public_keys.join("\n")
   	mode '0644'
   	user username

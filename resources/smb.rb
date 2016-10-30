@@ -9,6 +9,7 @@ action :create do
   package 'cifs-utils'
   template "/home/#{username}/.smbpasswd" do
     source 'smbpasswd.erb'
+    cookbook 'ru_baseline'
     mode '0700'
     owner username
     group username
