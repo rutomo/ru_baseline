@@ -1,3 +1,4 @@
+resource_name :admin
 property :username, String, required: true
 property :public_keys, String, required: true
 

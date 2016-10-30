@@ -1,3 +1,4 @@
+resource_name :smb
 property :smb_username, String, required: true
 property :smb_password, String, required: true
 property :mount_network_drive, String, required: true

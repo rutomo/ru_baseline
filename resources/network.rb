@@ -1,3 +1,4 @@
+resource_name :network
 property :static_ip, String, required: true
 property :device_name, String, required: true
 property :mask, String, required: true
