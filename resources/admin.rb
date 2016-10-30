@@ -4,7 +4,7 @@ property :public_keys, String, required: true
 
 action :create do
   home_dir = ::File.join("/home", username);
-
+  ssh_dir = ::File.join(home_dir, ".ssh");
   user username do
     comment 'Administrator Account'
     shell '/bin/bash'
